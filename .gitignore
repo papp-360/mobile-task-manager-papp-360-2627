@@ -1,55 +1,32 @@
-# Built application files
-*.apk
-*.ap_
-*.aab
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
-# Files for the ART/Dalvik VM
-*.dex
+### Kotlin ###
+.kotlin
 
-# Java class files
-*.class
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
-# Gradle files
-.gradle/
-build/
-**/build/
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 
-# Local configuration file (sdk path, etc)
-local.properties
+### VS Code ###
+.vscode/
 
-# Log Files
-*.log
-
-# Android Studio
-.idea/
-*.iml
-*.iws
-*.ipr
-.cache/
-captures/
-.externalNativeBuild/
-.cxx/
-
-# Keystore files
-*.jks
-
-# OS-specific
+### Mac OS ###
 .DS_Store
-Thumbs.db
-
-# Fastlane metadata
-fastlane/report.xml
-fastlane/metadata/android/*
-
-# Kotlin specific
-*.kotlin_module
-
-# Code coverage
-coverage.ec
-
-# Google Services and profiling
-*.hprof
-google-services.json
-
-# Build metadata
-output-metadata.json
