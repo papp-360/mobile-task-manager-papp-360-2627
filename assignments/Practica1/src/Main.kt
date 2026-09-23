@@ -84,8 +84,93 @@ fun main() {
     
     }
 
-    
+    //MarkTaskAsDone
 
+    fun MarkTaskAsDone(id: Int){
+        val task = tasks.find { id.getId() == id}
+        if(task != null){
+            task[K_ISDONE] = trrue
+            println("Task: $id is now marked as Done, congrats!")
+        }else{
+            println("Task: $id couldn't be found, try again!")
+        }
 
-    
+    }
+
+    //filterTasks
+
+    fun filterTasks(completed: Boolean){
+
+        var count = 1
+        var filtered = tasks.filter { it.isDone() == completed}
+
+        if(filtered.isEmpty()){
+                println("\nNo tasks found")
+        }else{
+            for(task in filtered){
+                println("------------------------------")
+                println("Task ${if (task.isDone()) "Finished" else "Not finished"} #" + count)
+                println("------------------------------")
+                count++;
+            }
+        }
+    }
+
+    //Interfaz del menú
+
+    var on= true
+    while(on){
+        println("\n ---------------------")
+        println("\t\t Task Manager")
+        println("1. Add a new task: ")
+        println("2. List all tasks: ")
+        println("3. Mark a task as done: ")
+        println("4. Filter tasks by status: ")
+        println("5. Exit: ")
+        println("---------------------\n")
+        println("\nSelect an option: \n")
+
+        when(readLine()?.trim()){
+            "1" -> {
+                addTask(tasks)
+                idTask++
+            }
+
+            "2" -> {
+                listTasks(tasks)
+            }
+            "3" -> {
+                println("\n ---------------------")
+                println("\t\t Enter the ID of the task to mark as done:")
+                println("---------------------\n")
+                val id = readLine()?.toIntOrNull()
+                if(id != null){
+                    MarkTaskAsDone(id)
+                }else{
+                    println("Invalid ID, try again!")
+                }
+            }
+            "4" ->{
+                println("\n ---------------------")
+                println("\t\t Filter tasks by status:")
+                println("1. Completed tasks")
+                println("2. Not completed tasks")
+                println("---------------------\n")
+                val option = readLine()?.trim()
+                when(option){
+                    "1" -> filterTasks(true)
+                    "2" -> filterTasks(false)
+                    else -> println("Invalid option, try again!")
+                }
+            }
+            "5" -> {
+                println("Exiting the program, goodbye!")
+                on = false
+            }
+            else -> {
+                println("Invalid option, try again!")
+            }
+        }
+
+    }
 }
