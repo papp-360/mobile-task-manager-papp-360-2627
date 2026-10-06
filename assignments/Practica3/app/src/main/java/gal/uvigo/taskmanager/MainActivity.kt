@@ -15,24 +15,25 @@ import gal.uvigo.taskmanager.ui.theme.TaskManagerTheme
 import gal.uvigo.taskmanager.Model.Task
 import gal.uvigo.taskmanager.Model.Category
 import java.time.LocalDate
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            TaskManagerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            MaterialTheme {
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    TaskManagerScreen()
                 }
             }
         }
     }
 }
-
+/*
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
@@ -48,7 +49,7 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
-
+*/
 @Composable
 fun TaskManagerScreen() {
     // -- Paso 2: lista dummy de tareas --
@@ -75,4 +76,31 @@ fun TaskManagerScreen() {
             category = Category.URGENT
         )
     )
+       // -- Paso 3: Column apila los elementos verticalmente --
+    Column(modifier = Modifier.padding(16.dp)) {
+
+        // -- Paso 4: título leído desde recursos, no hardcodeado --
+        Text(text = stringResource(id = R.string.title_welcome))
+
+        // -- Paso 6: bucle en vez de 3 llamadas manuales (DRY) --
+        for (task in dummyTasks) {
+            TaskTextRenderer(task)
+        }
+    }
+}
+// -- Paso 5: renderizador "bruto" de una tarea --
+@Composable
+fun TaskTextRenderer(task: Task) {
+    val text = "#${task.id} - ${task.title} | ${task.category} | Due: ${task.dueDate}" +
+            if (task.description.isNotBlank()) " | ${task.description}" else ""
+    Text(text = text)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TaskManagerScreenPreview() {
+    MaterialTheme {
+        TaskManagerScreen()
+    }
+
 }
