@@ -17,6 +17,7 @@ import gal.uvigo.taskmanager.Model.Category
 import gal.uvigo.taskmanager.Model.Task
 import gal.uvigo.taskmanager.R
 import java.time.LocalDate
+import gal.uvigo.taskmanager.ui.AddTaskForm
 @Composable
 fun MainScreen() {
     // -- Paso 2: lista observable. mutableStateListOf ya es "Compose-aware" por sí misma,
